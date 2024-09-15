@@ -1,44 +1,73 @@
 import { useState, useRef } from "react";
-import { Layer, Stage, Line, Rect, Circle } from "react-konva";
+import { Layer, Stage, Line, Rect, Circle, Text } from "react-konva";
 import Controllers from "../components/Controllers";
 
 function Whiteboard() {
+  // track of all the drawn shapes
   const [shapes, setShapes] = useState([]);
   const [drawing, setDrawing] = useState(false);
-  const [currentShape, setCurrentShape] = useState("line");
+  const [selectedOption, setSelectedOption] = useState("line");
+  const [textAnnotation, setTextAnnotation] = useState("");
+
   const stageRef = useRef();
 
+  // handler to start drawing shapes
   const handleMouseDown = (e) => {
-    setDrawing(true);
-    const position = e.target.getStage().getPointerPosition();
-    if (currentShape === "line") {
-      setShapes([
-        ...shapes,
-        { type: currentShape, points: [position.x, position.y] },
-      ]);
-    } else {
-      setShapes([
-        ...shapes,
-        {
-          type: currentShape,
-          x: position.x,
-          y: position.y,
-          width: 0,
-          height: 0,
-        },
-      ]);
+    if (e.target === e.target.getStage()) {
+      if (selectedOption !== "select") {
+        setDrawing(true);
+
+        // Get the current mouse position on the stage
+        const position = e.target.getStage().getPointerPosition();
+        if (selectedOption === "text") {
+          // For text, we immediately add it to shapes
+          setShapes([
+            ...shapes,
+            {
+              id: Date.now(),
+              type: selectedOption,
+              x: position.x,
+              y: position.y,
+              text: textAnnotation || "Double click to edit",
+            },
+          ]);
+          setTextAnnotation("");
+        } else if (selectedOption === "line") {
+          setShapes([
+            ...shapes,
+            {
+              id: Date.now(),
+              type: selectedOption,
+              points: [position.x, position.y],
+            },
+          ]);
+        } else {
+          setShapes([
+            ...shapes,
+            {
+              id: Date.now(),
+              type: selectedOption,
+              x: position.x,
+              y: position.y,
+              width: 0,
+              height: 0,
+              radius: 0,
+            },
+          ]);
+        }
+      }
     }
   };
 
+  // handler to draw shapes
   const handleMouseMove = (e) => {
-    if (!drawing) {
-      return;
-    }
+    if (!drawing || selectedOption === "test") return;
     const stage = e.target.getStage();
     const point = stage.getPointerPosition();
     let lastShape = shapes[shapes.length - 1];
 
     if (lastShape.type === "circle") {
+      // Calculate the radius for circles based on distance from the start point
       const newRadius = Math.sqrt(
         Math.pow(point.x - lastShape.x, 2) + Math.pow(point.y - lastShape.y, 2)
       );
@@ -50,16 +79,48 @@ function Whiteboard() {
       lastShape.points = lastShape.points.concat([point.x, point.y]);
     }
 
+    // updated version of shape
     shapes.splice(shapes.length - 1, 1, lastShape);
     setShapes(shapes.concat());
   };
 
+  // handler to stop drawing
   const handleMouseUp = () => {
     setDrawing(false);
   };
 
+  // Changing shape by clicking on the controller button
   const handleShapeChange = (shape) => {
-    setCurrentShape(shape);
+    setSelectedOption(shape);
+  };
+
+  // Drag shape
+  const handleDragEnd = (e, id) => {
+    const updatedShapes = shapes.map((shape) => {
+      if (shape.id === id) {
+        return {
+          ...shape,
+          x: e.target.x(),
+          y: e.target.y(),
+        };
+      }
+      return shape;
+    });
+    setShapes(updatedShapes);
+  };
+
+  // Edit text
+  const handleTextEdit = (e, id) => {
+    const updatedShapes = shapes.map((shape) => {
+      if (shape.id === id) {
+        return {
+          ...shape,
+          text: e.target.value,
+        };
+      }
+      return shape;
+    });
+    setShapes(updatedShapes);
   };
 
   return (
@@ -68,9 +129,10 @@ function Whiteboard() {
       <div className="controller z-20 absolute top-[50%] right-0 translate-y-[-50%]">
         <Controllers
           onShapeChange={handleShapeChange}
-          currentShape={currentShape}
+          selectedOption={selectedOption}
         />
       </div>
+
       {/* Canvas container */}
       <Stage
         ref={stageRef}
@@ -80,6 +142,7 @@ function Whiteboard() {
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUp}
       >
+        {/* Layer to hold all the drawn shapes */}
         <Layer>
           {shapes.map((shape, i) => {
             if (shape.type === "circle") {
@@ -90,6 +153,8 @@ function Whiteboard() {
                   y={shape.y}
                   radius={shape.radius}
                   stroke="black"
+                  draggable={selectedOption === "select"}
+                  onDragEnd={(e) => handleDragEnd(e, shape.id)}
                 />
               );
             } else if (shape.type === "rectangle") {
@@ -101,6 +166,8 @@ function Whiteboard() {
                   width={shape.width}
                   height={shape.height}
                   stroke="black"
+                  draggable={selectedOption === "select"}
+                  onDragEnd={(e) => handleDragEnd(e, shape.id)}
                 />
               );
             } else if (shape.type === "line") {
@@ -112,6 +179,27 @@ function Whiteboard() {
                   strokeWidth={2}
                   tension={0.5}
                   lineCap="round"
+                  draggable={selectedOption === "select"}
+                  onDragEnd={(e) => handleDragEnd(e, shape.id)}
+                />
+              );
+            } else if (shape.type === "text") {
+              return (
+                <Text
+                  key={i}
+                  x={shape.x}
+                  y={shape.y}
+                  text={shape.text}
+                  fontSize={16}
+                  fill="black"
+                  draggable={selectedOption === "select"}
+                  onDragEnd={(e) => handleDragEnd(e, shape.id)}
+                  onDblClick={() => {
+                    const newText = prompt("Edit text:", shape.text);
+                    if (newText !== null) {
+                      handleTextEdit({ target: { value: newText } }, shape.id);
+                    }
+                  }}
                 />
               );
             }
