@@ -206,3 +206,107 @@ Below are examples of sample data for the `Drawing` model:
   }
 ]
 ```
+
+## Frontend
+
+### Technologies Used
+
+- **React**: A JavaScript library for building user interfaces.
+- **React Router DOM**: For client-side routing.
+- **React Konva**: A library to work with canvas in React applications.
+- **Axios**: For making API requests.
+- **React Toastify**: For showing notifications.
+- **Tailwind CSS**: A utility-first CSS framework for rapid UI development.
+
+### Components
+
+- **App.jsx**: Main application component that sets up routing and includes global configurations like notifications using React Toastify.
+- **HomePage.jsx**: Displays a list of saved drawings, allowing users to view or delete them.
+- **Whiteboard.jsx**: The main drawing interface, allowing users to create and update drawings. Includes a modal for saving and updating the drawings.
+
+### Setup
+
+1. **Install Dependencies**
+
+   First, navigate to the frontend directory and install all required dependencies:
+
+   ```
+   npm install
+   ```
+
+2. **Run the Development Server**
+
+   To start the React development server, use:
+
+   ```
+   npm run dev
+   ```
+
+   This will launch the app in your default web browser at "http://localhost:5173".
+
+   ## Usage
+
+### Drawing on the Whiteboard
+
+1. **Visit the Whiteboard Page**
+
+   Navigate to the `/whiteboard` route to start drawing.
+
+2. **Choose Your Drawing Tool**
+
+   Use the controls on the right side of the whiteboard to select the shape you want to draw:
+
+   - **Line**
+   - **Rectangle**
+   - **Circle**
+   - **Text**
+
+3. **Draw on the Canvas**
+
+   Click and drag on the canvas to create your drawing.
+
+4. **Change Drawing Position**
+
+   Click select button to move the drawing position.
+
+5. **Save Your Drawing**
+
+   Click the "Save" button to save the drawing. If you are editing an existing drawing, it will be updated with the new changes.
+
+### Viewing and Editing Saved Drawings
+
+1. **Navigate to the Homepage**
+
+   Go to the homepage at `/` to view all your saved drawings.
+
+2. **Edit a Drawing**
+
+   Click on any drawing to open it in the whiteboard for editing.
+
+3. **Update the Drawing**
+
+   Make any desired changes and click "Update" to save the changes to the drawing.
+
+## Contributing
+
+We welcome contributions! If you find a bug or have a feature request, feel free to submit a pull request or open an issue.
+
+### Guidelines
+
+- **Code Quality**: Ensure your code follows general guidelines of clean and readable code.
+- **Testing**: Include tests for your changes if applicable.
+- **Documentation**: Update documentation to reflect any changes made.
+
+### How to Contribute
+
+1. **Fork the Repository**: Create a fork of the repository on GitHub.
+2. **Clone Your Fork**: Clone your fork to your local machine.
+3. **Create a Branch**: Create a new branch for your changes.
+4. **Make Changes**: Implement your changes or fixes.
+5. **Commit Your Changes**: Commit your changes with a clear message.
+6. **Push Your Changes**: Push your changes to your fork on GitHub.
+7. **Submit a Pull Request**: Open a pull request to the main repository with a description of your changes.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for details.
