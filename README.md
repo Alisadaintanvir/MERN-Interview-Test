@@ -23,13 +23,13 @@ The MERN Whiteboard Project is a web application that allows users to create, ma
 1. **Clone the Repository**:
 
    ```
-   git clone https://github.com/yourusername/your-repo-name.git
+   git clone https://github.com/Alisadaintanvir/MERN-Interview-Test.git
    ```
 
 2. **Navigate to the Backend Directory**:
 
    ```
-   cd your-repo-name/backend
+   cd backend
    ```
 
 3. **Install Dependencies**:
@@ -43,17 +43,17 @@ The MERN Whiteboard Project is a web application that allows users to create, ma
    Create a `.env` file in the `backend` directory with the following content:
 
    ```plaintext
-   MONGO_URI=your_mongodb_connection_string
-   PORT=5000
+   MONGODB_URI=your_mongodb_connection_string
+
    ```
 
 5. **Run the Server**:
 
    ```
-   npm start
+   nodemon server.js
    ```
 
-   The server will start on port 5000 by default, or any port specified in the `.env` file.
+   The server will start on port 5000 by default.
 
 ## API Endpoints
 
