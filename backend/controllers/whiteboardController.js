@@ -1,6 +1,7 @@
 const Drawing = require("../models/whiteboard");
 
 const drawingControllers = {
+  // add drawing
   addDrawing: async (req, res) => {
     const { name, elements } = req.body;
     try {
@@ -26,6 +27,7 @@ const drawingControllers = {
     }
   },
 
+  // get all drawings
   getDrawing: async (req, res) => {
     try {
       const drawings = await Drawing.find();
@@ -35,6 +37,7 @@ const drawingControllers = {
     }
   },
 
+  // get drawing by id
   getDrawingById: async (req, res) => {
     const { id } = req.params;
     try {
@@ -48,6 +51,7 @@ const drawingControllers = {
     }
   },
 
+  // update drawing
   updateDrawing: async (req, res) => {
     const { id } = req.params;
     const { name, elements } = req.body;
@@ -66,6 +70,7 @@ const drawingControllers = {
     }
   },
 
+  // delete drawing
   deleteDrawing: async (req, res) => {
     const { id } = req.params;
     try {

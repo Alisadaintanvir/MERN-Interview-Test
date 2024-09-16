@@ -156,7 +156,7 @@ function Whiteboard() {
   // Drag shape
   const handleDragEnd = (e, id) => {
     const updatedShapes = shapes.map((shape) => {
-      if (shape._id === id) {
+      if (shape.id === id) {
         return {
           ...shape,
           x: e.target.x(),
@@ -171,7 +171,7 @@ function Whiteboard() {
   // Edit text
   const handleTextEdit = (e, id) => {
     const updatedShapes = shapes.map((shape) => {
-      if (shape._id === id) {
+      if (shape.id === id) {
         return {
           ...shape,
           text: e.target.value,
