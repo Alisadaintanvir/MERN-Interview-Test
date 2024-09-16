@@ -1,12 +1,13 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import axios from "axios";
 import { Layer, Stage, Line, Rect, Circle, Text } from "react-konva";
 import Controllers from "../components/Controllers";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
 function Whiteboard() {
   const navigate = useNavigate();
+  const { id } = useParams();
   // track of all the drawn shapes
   const [shapes, setShapes] = useState([]);
   const [drawing, setDrawing] = useState(false);
@@ -16,6 +17,24 @@ function Whiteboard() {
   const [drawingName, setDrawingName] = useState("");
 
   const stageRef = useRef();
+
+  // fetch drawing based on id
+  useEffect(() => {
+    const fetchDrawing = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:5000/api/whiteboard/${id}`
+        );
+        setShapes(response.data.elements || []);
+        setDrawingName(response.data.name || "Untitles drawing");
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    if (id) {
+      fetchDrawing();
+    }
+  }, [id]);
 
   // handle to save the drawing
   const handleSave = async () => {

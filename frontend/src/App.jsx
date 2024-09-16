@@ -27,6 +27,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/whiteboard" element={<Whiteboard />} />
+          <Route path="/whiteboard/:id" element={<Whiteboard />} />
         </Routes>
       </div>
     </Router>

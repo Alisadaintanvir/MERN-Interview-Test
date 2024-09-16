@@ -4,5 +4,8 @@ const whiteboardController = require("../controllers/whiteboardController");
 const router = express.Router();
 
 router.get("/", whiteboardController.getDrawing);
+router.get("/:id", whiteboardController.getDrawingById);
 router.post("/add", whiteboardController.addDrawing);
+router.delete("/:id", whiteboardController.deleteDrawing);
+
 module.exports = router;

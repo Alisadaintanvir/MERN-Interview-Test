@@ -34,6 +34,32 @@ const drawingControllers = {
       res.status(404).json({ message: error.message });
     }
   },
+
+  getDrawingById: async (req, res) => {
+    const { id } = req.params;
+    try {
+      const drawing = await Drawing.findById(id);
+      if (!drawing) {
+        return res.status(404).json({ message: "Drawing not found" });
+      }
+      res.status(200).json(drawing);
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  },
+
+  deleteDrawing: async (req, res) => {
+    const { id } = req.params;
+    try {
+      const drawing = await Drawing.findByIdAndDelete(id);
+      if (!drawing) {
+        return res.status(404).json({ message: "Drawing not found" });
+      }
+      res.status(200).json({ message: "Drawing deleted successfully" });
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  },
 };
 
 module.exports = drawingControllers;
