@@ -1,12 +1,10 @@
 # MERN Whiteboard Project
 
-## Project Overview
-
-The MERN Whiteboard Project is a web application that allows users to create, manage, and view drawings on a virtual whiteboard. The project is built using the MERN stack (MongoDB, Express.js, React, Node.js) and provides RESTful API endpoints to handle drawing data.
+A simple web application that allows users to create, view, and manage drawings on a virtual whiteboard. The app supports drawing various shapes and adding text annotations. Users can save their drawings, view a list of saved drawings, and update or delete them.
 
 ## Table of Contents
 
-- [Overview](#overview)
+- [Overview](#project-overview)
 - [Frontend](#frontend)
   - [Technologies Used](#technologies-used)
   - [Components](#components)
@@ -15,10 +13,13 @@ The MERN Whiteboard Project is a web application that allows users to create, ma
 - [Backend](#backend)
   - [Technologies Used](#technologies-used-1)
   - [API Endpoints](#api-endpoints)
-  - [Setup](#setup-1)
-  - [Usage](#usage-1)
+  - [Setup](#installation-instructions)
 - [Contributing](#contributing)
 - [License](#license)
+
+## Project Overview
+
+The MERN Whiteboard Project is a web application that allows users to create, manage, and view drawings on a virtual whiteboard. The project is built using the MERN stack (MongoDB, Express.js, React, Node.js) and provides RESTful API endpoints to handle drawing data.
 
 ## Backend
 
