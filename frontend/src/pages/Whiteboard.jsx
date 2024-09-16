@@ -23,7 +23,7 @@ function Whiteboard() {
     const fetchDrawing = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/whiteboard/${id}`
+          `https://mern-interview-test-backend-woad.vercel.app/api/whiteboard/${id}`
         );
         setShapes(response.data.elements || []);
         setDrawingName(response.data.name || "Untitles drawing");
@@ -48,7 +48,7 @@ function Whiteboard() {
       // if id is present, update the drawing
       if (id) {
         await axios.patch(
-          `http://localhost:5000/api/whiteboard/${id}`,
+          `https://mern-interview-test-backend-woad.vercel.app/api/whiteboard/${id}`,
           dataPayload
         );
         toast.success("Drawing updated successfully");
@@ -56,7 +56,7 @@ function Whiteboard() {
       } else {
         // if id is not present, create a new drawing
         const response = await axios.post(
-          "http://localhost:5000/api/whiteboard/add",
+          "https://mern-interview-test-backend-woad.vercel.app/api/whiteboard/add",
           dataPayload
         );
 

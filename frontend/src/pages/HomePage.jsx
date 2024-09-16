@@ -13,7 +13,7 @@ function HomePage() {
     const fetchDrawings = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/whiteboard"
+          "https://mern-interview-test-backend-woad.vercel.app/api/whiteboard"
         );
         setDrawings(response.data);
       } catch (error) {
@@ -28,7 +28,9 @@ function HomePage() {
   // delete drawing
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/whiteboard/${id}`);
+      await axios.delete(
+        `https://mern-interview-test-backend-woad.vercel.app/api/whiteboard/${id}`
+      );
       setDrawings(drawings.filter((drawing) => drawing._id !== id));
       toast.success("Drawing deleted successfully");
     } catch (error) {
