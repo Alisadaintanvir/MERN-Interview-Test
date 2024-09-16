@@ -1,7 +1,8 @@
 const express = require("express");
 const cors = require("cors");
-const dotenv = require("dotenv");
 const connectDB = require("./config/db");
+
+const whiteboardRoutes = require("./routes/whiteboardRoutes");
 
 const PORT = process.env.PORT || 5000;
 // connect the database
@@ -11,7 +12,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-// app.use("/api/whiteboard");
+app.use("/api/whiteboard", whiteboardRoutes);
 
 app.get("/", (req, res) => {
   res.send(`Server is running on port ${PORT} successfully.`);
