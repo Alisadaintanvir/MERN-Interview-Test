@@ -2,23 +2,41 @@
 
 ## Project Overview
 
-The MERN Whiteboard Project is a web application that allows users to create, manage, and view drawings on a virtual whiteboard. The backend is built using the MERN stack (MongoDB, Express.js, React, Node.js) and provides RESTful API endpoints to handle drawing data.
+The MERN Whiteboard Project is a web application that allows users to create, manage, and view drawings on a virtual whiteboard. The project is built using the MERN stack (MongoDB, Express.js, React, Node.js) and provides RESTful API endpoints to handle drawing data.
 
-## Features
+## Table of Contents
+
+- [Overview](#overview)
+- [Frontend](#frontend)
+  - [Technologies Used](#technologies-used)
+  - [Components](#components)
+  - [Setup](#setup)
+  - [Usage](#usage)
+- [Backend](#backend)
+  - [Technologies Used](#technologies-used-1)
+  - [API Endpoints](#api-endpoints)
+  - [Setup](#setup-1)
+  - [Usage](#usage-1)
+- [Contributing](#contributing)
+- [License](#license)
+
+## Backend
+
+### Features
 
 - **Add Drawings**: Create new drawings with a name and elements.
 - **View Drawings**: Retrieve all drawings or a specific drawing by ID.
 - **Update Drawings**: Modify existing drawings.
 - **Delete Drawings**: Remove drawings from the database.
 
-## Technologies Used
+### Technologies Used
 
 - **MongoDB**: NoSQL database for storing drawing data.
 - **Express.js**: Web framework for building the RESTful API.
 - **Node.js**: JavaScript runtime for the server-side logic.
 - **Mongoose**: ODM library for MongoDB, used for data modeling and schema validation.
 
-## Installation Instructions
+### Installation Instructions
 
 1. **Clone the Repository**:
 
@@ -55,9 +73,9 @@ The MERN Whiteboard Project is a web application that allows users to create, ma
 
    The server will start on port 5000 by default.
 
-## API Endpoints
+### API Endpoints
 
-### 1. Add Drawing
+#### 1. Add Drawing
 
 - **Endpoint**: `POST /api/whiteboard/add`
 - **Description**: Adds a new drawing.
@@ -84,7 +102,7 @@ The MERN Whiteboard Project is a web application that allows users to create, ma
   - `400 Bad Request`: Missing required fields.
   - `409 Conflict`: Drawing with the same name already exists.
 
-### 2. Get All Drawings
+#### 2. Get All Drawings
 
 - **Endpoint**: `GET /api/whiteboard/`
 - **Description**: Retrieves all drawings.
@@ -92,7 +110,7 @@ The MERN Whiteboard Project is a web application that allows users to create, ma
   - `200 OK`: Returns a list of drawings.
   - `404 Not Found`: No drawings found.
 
-### 3. Get Drawing by ID
+#### 3. Get Drawing by ID
 
 - **Endpoint**: `GET /api/whiteboard/:id`
 - **Description**: Retrieves a specific drawing by ID.
@@ -102,7 +120,7 @@ The MERN Whiteboard Project is a web application that allows users to create, ma
   - `200 OK`: Returns the drawing.
   - `404 Not Found`: Drawing not found.
 
-### 4. Update Drawing
+#### 4. Update Drawing
 
 - **Endpoint**: `PATCH /api/whiteboard/:id`
 - **Description**: Updates an existing drawing.
@@ -129,7 +147,7 @@ The MERN Whiteboard Project is a web application that allows users to create, ma
   - `200 OK`: Successfully updated drawing.
   - `404 Not Found`: Drawing not found.
 
-### 5. Delete Drawing
+#### 5. Delete Drawing
 
 - **Endpoint**: `DELETE /api/whiteboard/:id`
 - **Description**: Deletes a specific drawing by ID.
@@ -139,7 +157,7 @@ The MERN Whiteboard Project is a web application that allows users to create, ma
   - `200 OK`: Drawing deleted successfully.
   - `404 Not Found`: Drawing not found.
 
-## Sample Data
+### Sample Data
 
 Below are examples of sample data for the `Drawing` model:
 
