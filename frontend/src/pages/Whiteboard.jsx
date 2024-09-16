@@ -11,6 +11,8 @@ function Whiteboard() {
 
   const stageRef = useRef();
 
+  console.log(shapes);
+
   // handler to start drawing shapes
   const handleMouseDown = (e) => {
     if (e.target === e.target.getStage()) {
@@ -61,7 +63,7 @@ function Whiteboard() {
 
   // handler to draw shapes
   const handleMouseMove = (e) => {
-    if (!drawing || selectedOption === "test") return;
+    if (!drawing || selectedOption === "text") return;
     const stage = e.target.getStage();
     const point = stage.getPointerPosition();
     let lastShape = shapes[shapes.length - 1];
@@ -124,13 +126,16 @@ function Whiteboard() {
   };
 
   return (
-    <main className="relative h-screen pt-20 overflow-hidden">
+    <main className="relative block h-screen pt-20 md:overflow-hidden">
       {/* Controllers  */}
-      <div className="controller z-20 absolute top-[50%] right-0 translate-y-[-50%]">
+      <div className="controller z-20 bg-white fixed top-[50%] right-0 translate-y-[-50%] border rounded-lg shadow-lg overflow-hidden ">
         <Controllers
           onShapeChange={handleShapeChange}
           selectedOption={selectedOption}
         />
+        <button className="w-full p-2 text-white bg-green-500 hover:bg-green-600">
+          Save
+        </button>
       </div>
 
       {/* Canvas container */}

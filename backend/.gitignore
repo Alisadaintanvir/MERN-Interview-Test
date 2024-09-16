@@ -1,0 +1,34 @@
+# Node.js dependencies
+node_modules/
+
+# Environment variables
+.env
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# IDE and editor-specific files
+.vscode/
+.idea/
+*.swp
+
+# Build output
+build/
+dist/
+
+# Other files
+coverage/
+*.tgz
+*.gz
+*.zip
+
+# Misc
+*.sqlite
+*.db

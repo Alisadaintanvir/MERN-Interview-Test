@@ -1,17 +1,13 @@
 import { TbRectangle } from "react-icons/tb";
-import { IoMdDownload } from "react-icons/io";
-import { FaLongArrowAltRight } from "react-icons/fa";
 import { LuPencil } from "react-icons/lu";
-import { GiArrowCursor } from "react-icons/gi";
 import { FaRegCircle } from "react-icons/fa6";
 import { FiMousePointer } from "react-icons/fi";
 import { CiText } from "react-icons/ci";
+import { CiSquareRemove } from "react-icons/ci";
 
 function Controllers({ onShapeChange, selectedOption }) {
   return (
-    <div
-      className={`grid grid-cols-2 gap-5 px-3 py-2 mx-auto border rounded-lg shadow-lg w-fit  `}
-    >
+    <div className={`grid grid-cols-2 gap-5 px-5 py-3 mx-auto w-fit  `}>
       <button
         onClick={() => onShapeChange("line")}
         className={`p-2 rounded-md hover:bg-slate-700 hover:text-white ${
@@ -53,6 +49,14 @@ function Controllers({ onShapeChange, selectedOption }) {
         }`}
       >
         <FaRegCircle size={24} />
+      </button>
+      <button
+        onClick={() => onShapeChange("delete")}
+        className={`p-2 rounded-md hover:bg-slate-700 hover:text-white ${
+          selectedOption === "delete" ? "bg-slate-700 text-white" : ""
+        }`}
+      >
+        <CiSquareRemove size={24} />
       </button>
     </div>
   );
