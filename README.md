@@ -5,15 +5,15 @@ A simple web application that allows users to create, view, and manage drawings 
 ## Table of Contents
 
 - [Overview](#project-overview)
+- [Backend](#backend)
+  - [Technologies Used](#technologies-used-1)
+  - [API Endpoints](#api-endpoints)
+  - [Setup](#installation-instructions)
 - [Frontend](#frontend)
   - [Technologies Used](#technologies-used)
   - [Components](#components)
   - [Setup](#setup)
   - [Usage](#usage)
-- [Backend](#backend)
-  - [Technologies Used](#technologies-used-1)
-  - [API Endpoints](#api-endpoints)
-  - [Setup](#installation-instructions)
 - [Contributing](#contributing)
 - [License](#license)
 
