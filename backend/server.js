@@ -16,7 +16,7 @@ app.use(cors());
 app.use("/api/whiteboard", whiteboardRoutes);
 
 app.get("/", (req, res) => {
-  res.send(`Server is running on port ${PORT} successfully.`);
+  res.status(200).json("Welcome, app is working well");
 });
 
 app.listen(PORT, () => {
