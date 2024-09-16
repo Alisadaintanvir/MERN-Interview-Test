@@ -2,6 +2,10 @@
 
 A simple web application that allows users to create, view, and manage drawings on a virtual whiteboard. The app supports drawing various shapes and adding text annotations. Users can save their drawings, view a list of saved drawings, and update or delete them.
 
+## Live Demo
+
+Check out the live demo of the project here: [Live Demo](https://mern-interview-test-frontend-sooty.vercel.app/)
+
 ## Table of Contents
 
 - [Overview](#project-overview)
