@@ -39,20 +39,34 @@ function Whiteboard() {
   // handle to save the drawing
   const handleSave = async () => {
     try {
-      const response = await axios.post(
-        "http://localhost:5000/api/whiteboard/add",
-        {
-          name: drawingName,
-          elements: shapes,
-        }
-      );
+      // Drawing data to be sent to the server
+      const dataPayload = {
+        name: drawingName,
+        elements: shapes,
+      };
 
-      toast.success("Drawing saved successfully");
-      navigate("/");
-      console.log(response.data);
+      // if id is present, update the drawing
+      if (id) {
+        await axios.patch(
+          `http://localhost:5000/api/whiteboard/${id}`,
+          dataPayload
+        );
+        toast.success("Drawing updated successfully");
+        navigate("/");
+      } else {
+        // if id is not present, create a new drawing
+        const response = await axios.post(
+          "http://localhost:5000/api/whiteboard/add",
+          dataPayload
+        );
+
+        toast.success("Drawing saved successfully");
+        navigate("/");
+        console.log(response.data);
+      }
     } catch (error) {
-      console.log("error", error);
       toast.error(error.message);
+      console.log("error", error);
     }
   };
 
@@ -142,7 +156,7 @@ function Whiteboard() {
   // Drag shape
   const handleDragEnd = (e, id) => {
     const updatedShapes = shapes.map((shape) => {
-      if (shape.id === id) {
+      if (shape._id === id) {
         return {
           ...shape,
           x: e.target.x(),
@@ -157,7 +171,7 @@ function Whiteboard() {
   // Edit text
   const handleTextEdit = (e, id) => {
     const updatedShapes = shapes.map((shape) => {
-      if (shape.id === id) {
+      if (shape._id === id) {
         return {
           ...shape,
           text: e.target.value,
@@ -165,7 +179,7 @@ function Whiteboard() {
       }
       return shape;
     });
-    setShapes(updatedShapes);
+    setShapes([...updatedShapes]);
   };
 
   // handle to open the modal
@@ -191,7 +205,7 @@ function Whiteboard() {
           className="w-full p-2 text-white bg-green-500 hover:bg-green-600"
           onClick={handleOpenModal}
         >
-          Save
+          {id ? "Update" : "Save"}
         </button>
       </div>
 
@@ -199,7 +213,9 @@ function Whiteboard() {
       {isModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
           <div className="p-6 bg-white rounded-lg shadow-xl">
-            <h2 className="mb-4 text-xl font-bold">Save Drawing</h2>
+            <h2 className="mb-4 text-xl font-bold">
+              {id ? "Update" : "Save"} Drawing
+            </h2>
             <input
               type="text"
               value={drawingName}
@@ -218,7 +234,7 @@ function Whiteboard() {
                 onClick={handleSave}
                 className="px-4 py-2 text-white bg-green-500 rounded hover:bg-green-600"
               >
-                Save
+                {id ? "Update" : "Save"}
               </button>
             </div>
           </div>
