@@ -6,11 +6,11 @@ A simple web application that allows users to create, view, and manage drawings 
 
 - [Overview](#project-overview)
 - [Backend](#backend)
-  - [Technologies Used](#technologies-used-1)
+  - [Technologies Used](#technologies-used)
   - [API Endpoints](#api-endpoints)
   - [Setup](#installation-instructions)
 - [Frontend](#frontend)
-  - [Technologies Used](#technologies-used)
+  - [Technologies Used](#technologies-used-1)
   - [Components](#components)
   - [Setup](#setup)
   - [Usage](#usage)
@@ -290,7 +290,7 @@ Below are examples of sample data for the `Drawing` model:
 
 ## Contributing
 
-We welcome contributions! If you find a bug or have a feature request, feel free to submit a pull request or open an issue.
+I welcome contributions! If you find a bug or have a feature request, feel free to submit a pull request or open an issue.
 
 ### Guidelines
 
